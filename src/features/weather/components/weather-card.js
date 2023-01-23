@@ -27,9 +27,10 @@ iconSet.set("50n", "🌫️");
 const getDate = (timeStamp) => {
     const date = new Date(timeStamp * 1000);
     const options = {
-        weekday: "short",
-        hour: "numeric",
-        minute: "numeric"
+        weekday: "long",
+        year: "numeric",
+        month: "short",
+        day: "numeric",
     };
 
     return date.toLocaleString("en-US", options);
@@ -76,16 +77,21 @@ export default function WeatherCard({dayData, hourData}) {
             </div>
             <div className="weather-card-footer">
                 <div>
-                    <div>🌄 {0}°</div>
-                    <div className="sub-text">Morning</div>
+                    <div>☁️ {dayData.clouds.all}<span style={{fontSize: '14px'}}>%</span></div>
+                    <div className="sub-text">Clouds</div>
                 </div>
                 <div>
-                    <div>🌅 {0}°</div>
-                    <div className="sub-text">Evening</div>
+                    <div>
+                        <div className="weather-arrow">
+                            <div style={{transform: 'rotate('+dayData.wind.deg+'deg)', marginTop: '-2px'}}>⬆</div>
+                        </div>
+                        {roundDegree(dayData.wind.speed)} 
+                        <span style={{fontSize: '14px'}}> km/h</span></div>
+                    <div className="sub-text">Wind</div>
                 </div>
                 <div>
-                    <div>🌙 {0}°</div>
-                    <div className="sub-text">Night</div>
+                    <div>💧 {dayData.pop*100}<span style={{fontSize: '14px'}}>%</span></div>
+                    <div className="sub-text">Rain</div>
                 </div>
             </div>
             <div className="weather-card-footer">

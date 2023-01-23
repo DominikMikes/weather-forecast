@@ -73,3 +73,10 @@ background: rgb(10, 37, 80) - rgb(174, 123, 166)
 .weather-card-footer > div {
     white-space: nowrap;            
 }
+
+.weather-arrow {
+    width: fit-content;
+    float: left;
+    transform-origin: left;
+    margin-right: 8px;
+}
