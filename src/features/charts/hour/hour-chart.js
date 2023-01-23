@@ -5,18 +5,15 @@ export default function HourChart({hourData}) {
     const [chartData, setChartData] = useState();
     useEffect(() => {
         let tempData = [];
-        let showAll = (hourData.length <= 5);
         if (hourData) {
             hourData.forEach(hour => {
                 let hourX = new Date(hour.dt * 1000).getHours();
-                let tempY = Math.round(hour.temp);
-                if (showAll || hourX % 5 === 0) {
-                    tempData.push({
-                        name: hourX.toString() + ' H',
-                        Temp: tempY,
-                        hour: hourX.toString()
-                    });
-                }
+                let tempY = Math.round(hour.main.temp);
+                tempData.push({
+                    name: hourX.toString() + ' H',
+                    Temp: tempY,
+                    hour: hourX.toString()
+                });
             });
             setChartData(tempData);
         }

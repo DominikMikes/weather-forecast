@@ -7,7 +7,7 @@ export default function Weather() {
     const [weather, setWeather] = useState();
     useEffect(() => {
         const fetchData = async() => {
-            const response = await fetch('./dummyWeather20210512.json');
+            const response = await fetch('./dummyWeather20230123.json'); //dummyWeather20210512.json
             if (response.ok) {
                 const data = await response.json();            
                 setWeather(data);
@@ -18,67 +18,34 @@ export default function Weather() {
         .catch((err) => console.error(err));
     }, []);
 
-    const getWeatherCards = (day, idx) => {
+    const getWeatherCards = () => {
+        let dayData = [];
         let hourData = [];
-        const dayDate = new Date(day.dt * 1000);
+        let lastDate;
 
-        weather.hourly.forEach(hour => {
-            const hourDate = new Date(hour.dt * 1000);
-            if (dayDate.getDate() === hourDate.getDate()) {
-                hourData.push(hour);
+        weather.list.forEach(data => {
+            const dayDate = new Date(data.dt * 1000);
+            lastDate = (lastDate) ? lastDate : dayDate;
+
+            if (dayDate.getDate() === lastDate.getDate()) {
+                if (!dayData[dayDate.getDate().toString()]) {
+                    dayData[dayDate.getDate().toString()] = [];
+                }
+                dayData[dayDate.getDate().toString()].push(data);
             }
+            lastDate = dayDate;
+        });
+        return dayData.map((day) => {
+            return <WeatherCard key={day[0].dt} dayData={day[0]} hourData={day}></WeatherCard>;
         });        
-        return <WeatherCard key={idx} dayData={day} hourData={hourData}></WeatherCard>;
     };
 
     return (
         <div className="weather-card-wrapper">
             {!weather
             ? <div>No weather data loaded.</div>
-            : weather.daily.map((day, idx) => {
-                return getWeatherCards(day, idx);
-            })}            
+            : getWeatherCards()
+            }            
         </div>
     );
 }
-
-// export default class Weather extends React.Component<MyProps, MyState> {
-//     dailyWeatherCards: any
-//     // constructor(props: any) {
-//     //     super(props);        
-//     // }
-//     async componentDidMount() {
-//         const response = await fetch('./dummyWeather20210512.json');
-//         if (response.ok) {
-//             const data = await response.json();            
-//             this.setState({ weather: data });
-//         }
-//     }
-//     renderDailyWeatherCards() {
-//         if (this.state && this.state.weather) {
-//             return this.state.weather.daily.map((day, idx) => {
-//                 let hourData: WeatherApi.Hourly[] = [];
-//                 const dayDate = new Date(day.dt * 1000);
-
-//                 this.state.weather.hourly.forEach(hour => {
-//                     const hourDate = new Date(hour.dt * 1000);
-//                     if (dayDate.getDate() === hourDate.getDate()) {
-//                         hourData.push(hour);
-//                     }
-//                 });
-                
-//                 return <WeatherCard key={idx} dayData={day} hourData={hourData}></WeatherCard>
-//             });
-//         } else {
-//             return <div>No weather data loaded.</div>;
-//         }        
-//     }
-//     render() {
-//         this.dailyWeatherCards = this.renderDailyWeatherCards();
-//         return (
-//             <div className="weather-card-wrapper">
-//                 {this.dailyWeatherCards}
-//             </div>
-//         );
-//     }
-// }

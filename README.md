@@ -68,3 +68,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+## used 3rd party open weather api
+> url: https://api.openweathermap.org/data/2.5/forecast?lat=48.21&lon=16.3634&units=metric&cnt=5&appid={API_KEY}
