@@ -1,13 +1,7 @@
 import React from "react";
-// import HourChart from "../hour-chart/hour-chart";
+import { HourChart } from "../../charts/index";
 
 import './weather-card.css';
-
-// type MyProps = {
-// 	dayData: WeatherApi.Daily
-// 	hourData: WeatherApi.Hourly[]
-// };
-// type MyState = {};
 
 const iconSet = new Map();
 iconSet.set("01d", "☀️");
@@ -86,9 +80,9 @@ export default function WeatherCard({dayData, hourData}) {
                 </div>
             </div>
             <div className="weather-card-footer">
-                {/* {this.props.hourData.length > 0 && */}
-                    {/* <HourChart hourData={this.props.hourData}></HourChart> */}
-                {/* } */}
+                {hourData.length > 0 &&
+                    <HourChart hourData={hourData}></HourChart>
+                }
             </div>
         </div>       
     );
