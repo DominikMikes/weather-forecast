@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { Weather } from './features/weather/index';
 import NavBar from './features/navbar/components/navbar';
