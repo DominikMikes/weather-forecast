@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { HourChart } from "../../charts/index";
+import { WeatherContext } from "./weather";
+
 
 import './weather-card.css';
 
@@ -40,7 +42,10 @@ const roundDegree = (degree) => {
     return Math.round(degree);
 }
 
-export default function WeatherCard({dayData, hourData}) {
+export default function WeatherCard() {    
+    const hourData = useContext(WeatherContext);
+    const dayData = hourData[0];
+
     const getWeatherIcon = (id) => {
         let icon;
         if (iconSet.get(id)) {
@@ -96,7 +101,7 @@ export default function WeatherCard({dayData, hourData}) {
             </div>
             <div className="weather-card-footer">
                 {hourData.length > 0 &&
-                    <HourChart hourData={hourData}></HourChart>
+                    <HourChart></HourChart>
                 }
             </div>
         </div>       

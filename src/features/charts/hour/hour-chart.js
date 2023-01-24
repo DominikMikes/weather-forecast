@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Line, LineChart, Tooltip, XAxis, YAxis } from "recharts";
+import { WeatherContext } from "../../weather/components/weather";
 
-export default function HourChart({hourData}) {
+export default function HourChart() {
     const [chartData, setChartData] = useState();
+    const hourData = useContext(WeatherContext);
     useEffect(() => {
         let tempData = [];
         if (hourData) {
@@ -21,10 +23,10 @@ export default function HourChart({hourData}) {
 
     return(
         <LineChart width={300} height={200} data={chartData} style={{marginLeft: '-3rem', fontSize: '1rem'}}>
-            <Line type="monotone" dataKey="Temp" stroke="#ccc" strokeDasharray="4 4"/>
-            <YAxis dataKey="Temp" stroke="#ccc" style={{opacity: .2}} strokeDasharray="0"/>
-            <XAxis dataKey="name" stroke="#ccc" style={{opacity: .2}} strokeDasharray="0" />
-            <Tooltip wrapperStyle={{ width: 100, color: '#ccc' }} />
+            <Line type="monotone" dataKey="Temp" stroke="#ccc" strokeDasharray="5 10"/>
+            <YAxis dataKey="Temp" stroke="#ccc" style={{opacity: .5, fontSize: '12px'}} strokeDasharray="0"/>
+            <XAxis dataKey="name" stroke="#ccc" style={{opacity: .5, fontSize: '12px'}} strokeDasharray="0" />
+            <Tooltip wrapperStyle={{ width: 100, color: '#333' }} />
         </LineChart>   
     );
 }

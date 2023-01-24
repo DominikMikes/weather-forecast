@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import WeatherCard from "./weather-card";
 
 import './weather.css';
+
+export const WeatherContext = createContext();
 
 export default function Weather() {
     const [weather, setWeather] = useState();
@@ -20,7 +22,6 @@ export default function Weather() {
 
     const getWeatherCards = () => {
         let dayData = [];
-        let hourData = [];
         let lastDate;
 
         weather.list.forEach(data => {
@@ -36,7 +37,11 @@ export default function Weather() {
             lastDate = dayDate;
         });
         return dayData.map((day) => {
-            return <WeatherCard key={day[0].dt} dayData={day[0]} hourData={day}></WeatherCard>;
+            return (
+                <WeatherContext.Provider value={day} key={day[0].dt}>
+                    <WeatherCard></WeatherCard>
+                </WeatherContext.Provider>
+                );
         });        
     };
 
