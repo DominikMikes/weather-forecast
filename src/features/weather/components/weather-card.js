@@ -42,7 +42,7 @@ const roundDegree = (degree) => {
     return Math.round(degree);
 }
 
-export default function WeatherCard({theme}) {    
+export default function WeatherCard({theme, city}) {    
     const hourData = useContext(WeatherContext);
     const dayData = hourData[0];
 
@@ -59,7 +59,7 @@ export default function WeatherCard({theme}) {
             <div className="weather-card-header">
                 <div></div>
                 <div>
-                    Vienna<br />
+                    {city.name}<br />
                     <span className="time-line">{getDate(dayData.dt)}</span>
                 </div>
                 <div></div>

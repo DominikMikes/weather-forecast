@@ -1,5 +1,5 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
-import { ThemeContext } from "../../../App";
+import { LocationContext, ThemeContext } from "../../../App";
 import WeatherCard from "./weather-card";
 
 import './weather.css';
@@ -9,9 +9,17 @@ export const WeatherContext = createContext();
 export default function Weather() {
     const [weather, setWeather] = useState();
     const {theme} = useContext(ThemeContext);
+    const {searchLocation} = useContext(LocationContext);
     useEffect(() => {
         const fetchData = async() => {
-            const response = await fetch('./dummyWeather20230123.json'); //dummyWeather20210512.json
+            let file = '';
+            if (searchLocation.toLowerCase() === 'vienna') {
+                file = './viennaWeather.json';
+            } else {
+                file = './dummyWeather20230123.json';
+            }
+
+            const response = await fetch(file);
             if (response.ok) {
                 const data = await response.json();            
                 setWeather(data);
@@ -20,7 +28,7 @@ export default function Weather() {
 
         fetchData()
         .catch((err) => console.error(err));
-    }, []);
+    }, [searchLocation]);
 
     const getWeatherCards = () => {
         let dayData = [];
@@ -41,7 +49,7 @@ export default function Weather() {
         return dayData.map((day) => {
             return (
                 <WeatherContext.Provider value={day} key={day[0].dt}>
-                    <WeatherCard theme={theme}></WeatherCard>
+                    <WeatherCard theme={theme} city={weather.city}></WeatherCard>
                 </WeatherContext.Provider>
                 );
         });        
