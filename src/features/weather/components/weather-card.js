@@ -77,11 +77,11 @@ export default function WeatherCard({dayData, hourData}) {
             </div>
             <div className="weather-card-footer">
                 <div>
-                    <div>☁️ {dayData.clouds.all}<span style={{fontSize: '14px'}}>%</span></div>
+                    <div className="additional-infos">☁️ {dayData.clouds.all}<span style={{fontSize: '14px'}}>%</span></div>
                     <div className="sub-text">Clouds</div>
                 </div>
                 <div>
-                    <div>
+                    <div className="additional-infos">
                         <div className="weather-arrow">
                             <div style={{transform: 'rotate('+dayData.wind.deg+'deg)', marginTop: '-2px'}}>⬆</div>
                         </div>
@@ -90,7 +90,7 @@ export default function WeatherCard({dayData, hourData}) {
                     <div className="sub-text">Wind</div>
                 </div>
                 <div>
-                    <div>💧 {dayData.pop*100}<span style={{fontSize: '14px'}}>%</span></div>
+                    <div className="additional-infos">💧 {dayData.pop*100}<span style={{fontSize: '14px'}}>%</span></div>
                     <div className="sub-text">Rain</div>
                 </div>
             </div>
