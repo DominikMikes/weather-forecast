@@ -1,4 +1,5 @@
-import React, { useEffect, useState, createContext } from "react";
+import React, { useEffect, useState, createContext, useContext } from "react";
+import { ThemeContext } from "../../../App";
 import WeatherCard from "./weather-card";
 
 import './weather.css';
@@ -7,6 +8,7 @@ export const WeatherContext = createContext();
 
 export default function Weather() {
     const [weather, setWeather] = useState();
+    const {theme} = useContext(ThemeContext);
     useEffect(() => {
         const fetchData = async() => {
             const response = await fetch('./dummyWeather20230123.json'); //dummyWeather20210512.json
@@ -39,7 +41,7 @@ export default function Weather() {
         return dayData.map((day) => {
             return (
                 <WeatherContext.Provider value={day} key={day[0].dt}>
-                    <WeatherCard></WeatherCard>
+                    <WeatherCard theme={theme}></WeatherCard>
                 </WeatherContext.Provider>
                 );
         });        

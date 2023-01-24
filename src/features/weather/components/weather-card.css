@@ -16,18 +16,29 @@ background: rgb(10, 37, 80) - rgb(174, 123, 166)
     padding: 1em;
     
     background: linear-gradient(rgba(10, 37, 80, .95), rgba(5, 17, 29, .95));
+    background-position: 0px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     border-radius: 4px;
+
+    transition: all .5s ease-out;
+    border: 0;
+}
+
+.weather-card.light {
+    background: linear-gradient(rgb(223 28 136 / 80%), rgb(6 3 2 / 90%));
+}
+
+.weather-card:hover {
+    box-shadow: rgba(194, 194, 194, 0.8) 0px 2px 8px 0px;
 }
 
 .weather-card-header {
     display: flex;
     flex: 1;
     justify-content: space-between;
-
-    
+    text-align: center;
 }
 .weather-card-header .time-line {
     font-size: 1rem;

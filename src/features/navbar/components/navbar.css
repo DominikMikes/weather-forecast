@@ -1,0 +1,32 @@
+.navbar {
+    display: flex;
+    justify-content: center;
+    /* margin: 20px 0; */
+    width: 100%;
+}
+
+.navbar > div {
+    flex: 0;
+    text-align: center;
+    margin: 1em;
+    padding: 1em;
+}
+
+.navbar input {
+    height: 40px;
+    font-size: 24px;
+    background-color: rgba(0, 0, 0, .7);
+    border: 0;
+    color: white;
+    padding-left: 14px;
+}
+
+.navbar .theme-wrapper {
+    position: absolute;
+    right: 0;
+    border-radius: 50px;
+    font-size: 30px;
+    padding: 0;
+    cursor: pointer;
+    user-select: none;
+}

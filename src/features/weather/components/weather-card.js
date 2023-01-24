@@ -42,7 +42,7 @@ const roundDegree = (degree) => {
     return Math.round(degree);
 }
 
-export default function WeatherCard() {    
+export default function WeatherCard({theme}) {    
     const hourData = useContext(WeatherContext);
     const dayData = hourData[0];
 
@@ -55,7 +55,7 @@ export default function WeatherCard() {
     }
 
     return (
-        <div className="weather-card container">
+        <div className={"weather-card container " + (theme)}>
             <div className="weather-card-header">
                 <div></div>
                 <div>
