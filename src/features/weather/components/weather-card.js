@@ -59,7 +59,7 @@ export default function WeatherCard({theme, city}) {
             <div className="weather-card-header">
                 <div></div>
                 <div>
-                    {city.name}<br />
+                    {city.name.toUpperCase()}<br />
                     <span className="time-line">{getDate(dayData.dt)}</span>
                 </div>
                 <div></div>

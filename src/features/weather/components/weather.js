@@ -14,7 +14,7 @@ export default function Weather() {
         const fetchData = async() => {
             let file = '';
             if (searchLocation.toLowerCase() === 'vienna') {
-                file = './viennaWeather.json';
+                file = './vienna20230207.json';
             } else {
                 file = './dummyWeather20230123.json';
             }
